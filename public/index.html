@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="referrer" content="never">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>豆瓣一刻</title>
+	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="./public/less/main.css">
+	<!-- 引入angularjs -->
+	<script src="./public/libs/angular.min.js"></script>
+	<!-- 路由模块 -->
+	<script src="./public/libs/angular-route.js"></script>
+	<!-- 业务逻辑代码 -->
+	<script src="./scripts/app.js"></script>
+	<!-- 控制器模块 -->
+	<script src="./scripts/controllers.js"></script>
+</head>
+<body ng-app="Yike">
+	<div class="viewport">
+		<!-- 侧边导航 -->
+		<div ng-class="{navs: true, collapse: collapsed}" ng-controller="NavsController">
+			<dl>
+				<dt class="login">
+					<div class="avatar">
+						<img src="./public/images/avatar.png" alt="">
+					</div>
+					<span>登录</span>
+				</dt>
+				<dd ng-class="{active: key == current}" ng-repeat="(key, nav) in navs">
+					<a href="{{nav.link}}" ng-click="toggle()" class="{{nav.icon}}">
+						<span>{{nav.text}}</span>
+					</a>
+				</dd>
+			</dl>
+			<div class="extra">
+				<a href="javascript:;" class="icon-image">夜晚</a>
+				<a href="javascript:;" class="icon-download">离线</a>
+			</div>
+		</div>
+		<div class="container">
+			<!-- 头部 -->
+			<div ng-class="{header: true, collapse: collapsed}">
+				<a href="javascript:;" ng-click="toggle()" class="menu icon-menu"></a>
+				<h2>{{title}}</h2>
+				<a href="javascript:;" class="search icon-search"></a>
+			</div>
+			<!-- 主体 -->
+			<div ng-class="{body: true, collapse: collapsed}">
+				<!-- 占位 -->
+				<img class="loading" ng-hide="loaded" src="./public/images/loading.gif" alt="">
+				<div ng-view></div>
+			</div>
+		</div>
+	</div>
+	<!-- <script src="./public/libs/toggle.js"></script> -->
+</body>
+</html>
